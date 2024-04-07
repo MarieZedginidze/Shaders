@@ -1,8 +1,8 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import GUI from "lil-gui";
-import testVertexShader from "./shaders/test/vertex.glsl";
-import testFragmentShader from "./shaders/test/fragment.glsl";
+import testVertexShader from "./shaders/PlasmaEnergy/vertex.glsl";
+import testFragmentShader from "./shaders/PlasmaEnergy/fragment.glsl";
 
 /**
  * Base
@@ -20,24 +20,18 @@ const scene = new THREE.Scene();
  * Test mesh
  */
 // Geometry
-const geometry = new THREE.PlaneGeometry(1, 1, 32, 32);
+const geometry = new THREE.BoxGeometry(16, 16, 16);
 
-const count = geometry.attributes.position.count;
-const randoms = new Float32Array(count);
-for (let i = 0; i < count; i++) {
-  randoms[i] = Math.random();
-}
-geometry.setAttribute("aRandom", new THREE.BufferAttribute(randoms, 1));
 // Material
-const material = new THREE.RawShaderMaterial({
+const material = new THREE.ShaderMaterial({
   vertexShader: testVertexShader,
   fragmentShader: testFragmentShader,
-  wireframe: true,
+  side: THREE.DoubleSide,
 });
 
 // Mesh
 const mesh = new THREE.Mesh(geometry, material);
-mesh.scale.y = 2 / 3;
+mesh.rotation.x = 20;
 scene.add(mesh);
 
 /**
@@ -72,7 +66,7 @@ const camera = new THREE.PerspectiveCamera(
   0.1,
   100
 );
-camera.position.set(0.25, -0.25, 1);
+camera.position.set(0.25, -0.25, 30);
 scene.add(camera);
 
 // Controls
