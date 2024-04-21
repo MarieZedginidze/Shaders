@@ -15,6 +15,9 @@ export default class MeshFocus {
       this.intersected = this.raycaster.intersected;
       this.focusCamera();
     });
+    this.raycaster.on("orbitScene", () => {
+      this.showWholeScene();
+    });
   }
   // Move the camera and orbit controls to the mesh position
   focusCamera() {
@@ -30,6 +33,22 @@ export default class MeshFocus {
       x: this.intersected.position.x,
       y: this.intersected.position.y,
       z: this.intersected.position.z,
+      ease: "circ.out",
+    });
+  }
+  showWholeScene() {
+    gsap.to(this.camera.position, {
+      duration: 0.5,
+      x: 6,
+      y: 4,
+      z: 8,
+      ease: "circ.out",
+    });
+    gsap.to(this.controls.target, {
+      duration: 0.3,
+      x: 0,
+      y: 1,
+      z: 2,
       ease: "circ.out",
     });
   }

@@ -38,6 +38,8 @@ export default class Raycaster extends EventEmitter {
     if (intersects.length > 0) {
       this.intersected = intersects[0].object;
       this.trigger("castRay");
+    } else {
+      this.trigger("orbitScene");
     }
   }
 }

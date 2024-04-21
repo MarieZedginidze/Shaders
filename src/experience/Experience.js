@@ -5,6 +5,7 @@ import Camera from "./Camera.js";
 import Renderer from "./Renderer.js";
 import World from "./World/World.js";
 import MeshFocus from "./MeshFocus.js";
+import MeshControls from "./MeshControls.js";
 
 let instance = null;
 
@@ -28,6 +29,7 @@ export default class Experience {
     this.renderer = new Renderer();
     this.world = new World();
     this.meshfocus = new MeshFocus();
+    this.MeshControls = new MeshControls();
 
     // Sizes resize event
     this.sizes.on("resize", () => {
