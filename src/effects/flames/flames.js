@@ -5,6 +5,7 @@ export const setAflame = () => {
 
   const canvas = document.getElementById('canvas2');
   let context = canvas.getContext('2d');
+console.log("canvas: ", canvas);
   const viewport = {width: 400, height: 500}; // this should be set based on the canvs.
 
   const physicsComponent = {
@@ -21,7 +22,7 @@ export const setAflame = () => {
   let positionComponents = [];
   let emojiComponents = [];
 
-//  for(var i = 0; i < 40; i++) {
+//  for(var i = 0; i < 20; i++) {
     positionComponents.push({
       name : "position", // + Math.floor(Math.random() * 1000),
       componentType: 'position',
@@ -38,7 +39,7 @@ export const setAflame = () => {
 	  font: '40px Verdana'
       }
     });
- // }
+//  }
 
   const physicsProcessor = {
     name: "physicsProcessor",
@@ -46,6 +47,7 @@ export const setAflame = () => {
     update(entity, components, processor) {
       const [position, physics] = components;
 
+console.log('calling physics processor');
       physics.state.velocityY += physics.state.accelerationY;
       physics.state.velocityX *= (Math.random() < 0.5 ? -1 : 1);
 
@@ -94,7 +96,7 @@ console.log(context);
   ]);
   ecs.addEntity(ent);
 
-  setTimeout(() => {
+  setInterval(() => {
     console.log("should add some flames");
     context.clearRect(0, 0, canvas.width, canvas.height);
 //    context = canvas.getContext('2d');

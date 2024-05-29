@@ -8,7 +8,7 @@ const loadImage = () => {
 
         // wait till image is loaded.
         img.onload = function () {
-//            fill_canvas(img);       // fill the canvas with the image.
+            fill_canvas(img);       // fill the canvas with the image.
         }
 
         function fill_canvas(img) {
